@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Feedbacks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h2>🚌 Village Bus Feedback Dashboard</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bus ID</th>
+                <th>Category</th>
+                <th>Message</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feedback in feedbacks %}
+            <tr>
+                <td>{{ feedback.bus_id }}</td>
+                <td>{{ feedback.category }}</td>
+                <td>{{ feedback.message }}</td>
+                <td>{{ feedback.timestamp.strftime("%Y-%m-%d %H:%M:%S") if feedback.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus Feedback Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1>Bus Feedback Form</h1>
+    <form method="post">
+        <input type="hidden" name="bus_id" value="{{ bus_id }}">
+        <label>Category:</label>
+        <select name="category">
+            <option>Overcrowding</option>
+            <option>Late Arrival</option>
+            <option>Rude Driver</option>
+            <option>Cleanliness</option>
+        </select><br><br>
+        <label>Message:</label><br>
+        <textarea name="message" rows="5" cols="40"></textarea><br><br>
+        <input type="submit" value="Submit Feedback">
+    </form>
+</body>
+</html>
