@@ -1,13 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from pymongo import MongoClient
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env (for local dev)
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "anysecretkeyyoulike"  # Required for session management
+app.secret_key = os.environ.get("SECRET_KEY", "defaultsecret")  # Optional default fallback
 
-# MongoDB connection
-import os
-client = MongoClient(os.environ.get("MONGO_URI"))
+# ✅ Use MONGO_URI from environment variable (IMPORTANT!)
+mongo_uri = os.environ.get("MONGO_URI")
+client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
 db = client["bus_feedback"]
 feedbacks_collection = db["feedbacks"]
 
@@ -57,4 +62,4 @@ def admin():
     return render_template("admin.html", feedbacks=feedbacks)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000)
