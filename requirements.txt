@@ -3,3 +3,4 @@ pymongo~=4.13.2
 qrcode~=8.2
 dnspython
 gunicorn
+python-dotenv
