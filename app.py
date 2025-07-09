@@ -6,7 +6,8 @@ app = Flask(__name__)
 app.secret_key = "anysecretkeyyoulike"  # Required for session management
 
 # MongoDB connection
-client = MongoClient("mongodb+srv://anishanchan2023:DI4yuIiA6FxJ6iAQ@cluster0.axe99fw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+import os
+client = MongoClient(os.environ.get("MONGO_URI"))
 db = client["bus_feedback"]
 feedbacks_collection = db["feedbacks"]
 
